@@ -4,6 +4,8 @@ In 1912, the RMS Titanic, the largest ship afloat at the time, set sail from Sou
 
 The Jupyter notebooks and resulting pipeline and dashboard for this project demonstrate the collection, interrogation and presentation of data relating to passengers onboard the RMS Titanic. The scenario presented below is fictional and was undertaken for the developer's Data Analytics milestone project as part of [Code Institute's](https://codeinstitute.net/global/) Diploma in Full Stack Software Development.
 
+The dashboard displaying the findings from this study can be found [here](https://denham-titanic-survival-8db0df54d6aa.herokuapp.com/).
+
 ## Scenario
 
 As part of a new exhibition in Southampton, the City Council has commissioned a new study into the factors affecting the survival rate for passengers on board the Titanic.
