@@ -1,18 +1,18 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from src.data_management import load_passenger_data, load_pkl_file
+from src.data_management import load_pkl_file
 from src.machine_learning.evaluate_clf import clf_performance
 
 
 def page_evaluation_body():
 
 
-    version = 'v3'
-    # load needed files
+    version = 'v6'
+
     pipeline_dc_fe = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
     pipeline_model = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_clf.pkl")  
-    churn_feat_importance = plt.imread(
+    survival_feat_importance = plt.imread(
         f"outputs/ml_pipeline/predict-survivor/{version}/features_importance.png")
     X_train = pd.read_csv(
         f"outputs/ml_pipeline/predict-survivor/{version}/X_train.csv")
@@ -24,16 +24,17 @@ def page_evaluation_body():
         f"outputs/ml_pipeline/predict-survivor/{version}/y_test.csv").values
 
     st.header("ML Pipeline: Predict Passenger Survival")
-    # display pipeline training summary conclusions
+
     st.info(
-        f"* The pipeline was tuned aiming at least 0.80 Recall on 'Yes Churn' class, "
-        f"since we are interested in this project in detecting a potential churner. \n"
-        f"* The pipeline performance on train and test set is 0.90 and 0.85, respectively."
+        "* The pipeline was tuned aiming at least 0.80 Precision on both Survived (1) and Did Not Survive(0), "
+        "since we are interested in the overall accuracy (correct predictions) to enhance the visitor experience.\n"
+        "* The pipeline performance on the Train Set was 0.96 for Survived and 0.92 for Did Not Survive \n\n"
+        "* The pipeline performance on the Test Set was 0.89 for Survived and 0.88 for Did Not Survive \n\n"
+        "Therefore the pipeline has met the criteria for Business Requirement #2."
     )
 
-    # show pipelines
     st.write("---")
-    st.write("#### There are 2 ML Pipelines arranged in series.")
+    st.write("#### There are actually 2 ML Pipelines used in this process.")
 
     st.write(" * The first is responsible for data cleaning and feature engineering.")
     st.code(pipeline_dc_fe, language='python')
@@ -41,11 +42,11 @@ def page_evaluation_body():
     st.write("* The second is for feature scaling and modelling.")
     st.code(pipeline_model, language='python')
 
-    # show feature importance plot
+ 
     st.write("---")
     st.write("* The features the model was trained and their importance.")
     st.write(X_train.columns.to_list())
-    st.image(churn_feat_importance)
+    st.image(survival_feat_importance)
 
     st.write("---")
     st.write("### Pipeline Performance")
