@@ -4,10 +4,9 @@ from src.data_management import load_passenger_data, load_pkl_file
 from src.machine_learning.predictive_analysis_ui import predict_survival
 
 
-
 def page_predictor_body():
 
-    st.header('Predicting Surival')
+    st.header('Predicting Survival')
 
     st.write(
         "Visitors to the new exhibition will have the opportunity to enter their information "
@@ -15,8 +14,8 @@ def page_predictor_body():
         "This bleak exercise hopes to encourage visitors to empathise and connect with their "
         "counterparts from over a century ago. It should help to make the stories of the men, "
         "women, and children onboard more tangible and relatable.\n\n"
-        )
-    
+    )
+
     st.write(
         "This interactive experience aims to bridge the gap between history and present-day, allowing "
         "visitors to better understand the struggles, hardships, and triumphs of the individuals who were "
@@ -27,13 +26,16 @@ def page_predictor_body():
 
     # load predict churn files
     version = 'v6'
-    pipeline_dc_fe = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
-    pipeline_model = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_clf.pkl")  
+    pipeline_dc_fe = load_pkl_file(
+        f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
+    pipeline_model = load_pkl_file(
+        f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_clf.pkl")
 
     X_live = DrawInputsWidgets()
 
     if st.button("Predict Survival"):
-        survivor_prediction = predict_survival(X_live, pipeline_dc_fe, pipeline_model)
+        survivor_prediction = predict_survival(
+            X_live, pipeline_dc_fe, pipeline_model)
 
     st.write('---')
 
@@ -48,7 +50,7 @@ def DrawInputsWidgets():
     X_live = pd.DataFrame([], index=[0])
     df = load_passenger_data()
 
-    if 'filtered_df' not in st.session_state: 
+    if 'filtered_df' not in st.session_state:
         # st.session_state['Pclass'] = 1
         st.session_state['filtered_df'] = df[df["Pclass"] == 1]
 
@@ -62,7 +64,6 @@ def DrawInputsWidgets():
             options=df[feature].unique(),
         )
         X_live[feature] = st_widget
-
 
     with col3:
         feature = "Age"
@@ -103,6 +104,7 @@ def DrawInputsWidgets():
         X_live[feature] = st_widget
 
     return X_live
+
 
 def change(df, st_widget):
     st.session_state['filtered_df'] = df[df["Pclass"] == st_widget]

@@ -7,11 +7,12 @@ from src.machine_learning.evaluate_clf import clf_performance
 
 def page_evaluation_body():
 
-
     version = 'v6'
 
-    pipeline_dc_fe = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
-    pipeline_model = load_pkl_file(f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_clf.pkl")  
+    pipeline_dc_fe = load_pkl_file(
+        f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
+    pipeline_model = load_pkl_file(
+        f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_clf.pkl")
     survival_feat_importance = plt.imread(
         f"outputs/ml_pipeline/predict-survivor/{version}/features_importance.png")
     X_train = pd.read_csv(
@@ -42,7 +43,6 @@ def page_evaluation_body():
     st.write("* The second is for feature scaling and modelling.")
     st.code(pipeline_model, language='python')
 
- 
     st.write("---")
     st.write("* The features the model was trained and their importance.")
     st.write(X_train.columns.to_list())
@@ -54,7 +54,7 @@ def page_evaluation_body():
                     X_test=X_test, y_test=y_test,
                     pipeline=pipeline_model,
                     label_map=["Did Not Survive", "Survived"])
-    
+
     st.write('---')
 
     st.caption(

@@ -1,11 +1,13 @@
 import streamlit as st
 
+
 def predict_survival(X_live, pipeline_dc_fe, pipeline_model):
     X_live_survival_dc_fe = pipeline_dc_fe.transform(X_live)
     survival_prediction = pipeline_model.predict(X_live_survival_dc_fe)
-    survival_prediction_proba = pipeline_model.predict_proba(X_live_survival_dc_fe)
+    survival_prediction_proba = pipeline_model.predict_proba(
+        X_live_survival_dc_fe)
 
-    survival_prob = survival_prediction_proba[0,survival_prediction][0] * 100
+    survival_prob = survival_prediction_proba[0, survival_prediction][0] * 100
     if survival_prediction == 1:
         survival_result = 'would have'
     else:

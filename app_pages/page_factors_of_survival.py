@@ -27,7 +27,7 @@ def page_factors_of_survival_body():
     if st.checkbox("Inspect Passenger Data"):
         st.write(
             f"The dataset has {df.shape[0]} rows and {df.shape[1]} columns.\n\n"
-            f"The first 10, used to give an indication of the format of the data, are below.")
+            f"The first 10, used to indicate the format of the data, are below.")
 
         st.write(df.head(10))
 
@@ -73,10 +73,10 @@ def page_factors_of_survival_body():
     st.subheader("Hypothesis Testing")
 
     if st.checkbox("Hypothesis 1: Male passengers were less likely to survive the tragedy than female passengers."):
-        plot_expected_surival_by_sex(df)
+        plot_expected_survival_by_sex(df)
 
     if st.checkbox("Hypothesis 2: Passengers travelling in First Class were more likely to survive than passengers travelling in Third Class."):
-        plot_expected_surival_by_class(df)
+        plot_expected_survival_by_class(df)
 
     st.subheader("Conclusions")
 
@@ -84,7 +84,7 @@ def page_factors_of_survival_body():
         "The study and visualisations above support the following conclusions: \n\n"
         "1. There is a significant relationship between Sex and survival rate. \n\n"
         "* Female passengers were more likely to survive than Male passengers. \n\n"
-        "2. There is a significant relationship between Pclass and surival rate. \n\n"
+        "2. There is a significant relationship between Pclass and survival rate. \n\n"
         "* Passengers travelling in First Class were more likely to survive than passengers "
         "travelling in 3rd class.\n\n"
         "The conclusions of this study meet Business Requirement #1."
@@ -151,7 +151,7 @@ def show_parallel_plot(df_parallel):
     st.plotly_chart(fig)
 
 
-def plot_expected_surival_by_sex(df):
+def plot_expected_survival_by_sex(df):
     contingency_table = pd.crosstab(df['Survived'], df['Sex'])
     chi2, p_value, dof, expected = chi2_contingency(contingency_table)
     contingency_table.index = ['Did Not Survive', 'Survived']
@@ -159,9 +159,9 @@ def plot_expected_surival_by_sex(df):
     expected_df = pd.DataFrame(
         expected, index=['Did Not Survive', 'Survived'], columns=['Female', 'Male'])
     st.write(
-        "Below is the expected surival rate by sex, if sex had no relationship to surival.")
+        "Below is the expected survival rate by sex, if sex had no relationship to survival.")
     st.table(expected_df.round().astype(int))
-    st.write("Here is the actual surival rate by sex.")
+    st.write("Here is the actual survival rate by sex.")
     st.table(contingency_table)
     st.write(
         "There is a statistically significant relationship between 'Survived' and 'Sex'."
@@ -180,7 +180,8 @@ def plot_expected_surival_by_sex(df):
         "The pie charts again above highlight the disparity in outcomes between the male and female passengers."
     )
 
-def plot_expected_surival_by_class(df):
+
+def plot_expected_survival_by_class(df):
     contingency_table = pd.crosstab(df['Survived'], df['Pclass'])
     chi2, p_value, dof, expected = chi2_contingency(contingency_table)
     contingency_table.index = ['Did Not Survive', 'Survived']
@@ -198,9 +199,10 @@ def plot_expected_surival_by_class(df):
         "compared to Third Class passengers.")
 
     fig, ax = plt.subplots(1, 3, figsize=(10, 5))
-    
+
     for i, pclass in enumerate(contingency_table.columns):
-        ax[i].pie(contingency_table[pclass], labels=contingency_table.index, autopct='%1.1f%%', startangle=90)
+        ax[i].pie(contingency_table[pclass], labels=contingency_table.index,
+                  autopct='%1.1f%%', startangle=90)
         ax[i].set_title(f'Survival Status By Class - {pclass}')
 
     st.pyplot(fig)

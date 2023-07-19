@@ -13,8 +13,8 @@ def page_project_hypothesis_body():
 
     st.write(
         "Validating these hypotheses will allow SCC to examine the relationship of sex and class on survival rates."
-        )
-    
+    )
+
     st.write("---")
 
     st.caption(
@@ -22,7 +22,3 @@ def page_project_hypothesis_body():
         "Data Analytics milestone project as part of Code Institute's Diploma in Full Stack Software "
         "Development."
     )
-
-
-
-
