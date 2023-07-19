@@ -99,9 +99,7 @@ A Streamlit App UI will be used to present the findings of this project. It will
 ### Page 1 - Project Summary
 
 - Context and Overview of Project
-
 - Direct visitors to this README for more information
-
 - Describe business requirements
 
 ### Page 2 - Project Hypotheses and Validation
@@ -113,7 +111,7 @@ A Streamlit App UI will be used to present the findings of this project. It will
   2.  Passengers travelling in First Class were more likely to survive than passengers travelling in Third Class.
       - This is demonstrated to be true through the correlation study and visualisations
 
-### Page 3 - Factors for Survival
+### Page 3 - Factors for Survival Study
 
 - Describe dataset
 - Generate plots to show correlation and relationships
@@ -123,7 +121,6 @@ A Streamlit App UI will be used to present the findings of this project. It will
 ### Page 4 - Predict Passenger Survival
 
 - Set of widgets (select box and ranges) which relate to demographic qualities of passengers
-- Describe how it meets Business Requirement #2
 - 'Predict Survival' button. This triggers the ML Pipeline and predicts whether the passenger would have survived.
 
 ### Page 5 - Predict Passenger Survival: Model Evaluation
@@ -132,3 +129,10 @@ A Streamlit App UI will be used to present the findings of this project. It will
 - Present ML pipeline steps
 - Feature importance
 - Pipeline performance
+
+## Acknowledgements
+
+- The Code Institute Walkthrough Project _Churnometer_ was used as inspiration for this study and classification pipeline.
+- Many of the utility functions, including Hyperparameter Optimization, are adapted from this walkthrough project.
+- The support of my mentor Precious Ijege for his advice, guidance and directions to resources is gratefully acknowledged.
+- Finally a huge thank you to Niel McEwen for his endless help and patience.
