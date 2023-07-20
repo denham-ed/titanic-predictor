@@ -16,15 +16,6 @@ def page_predictor_body():
         "women, and children onboard more tangible and relatable.\n\n"
     )
 
-    st.write(
-        "This interactive experience aims to bridge the gap between history and present-day, allowing "
-        "visitors to better understand the struggles, hardships, and triumphs of the individuals who were "
-        "part of that significant historical event. Through this unique engagement, the exhibition aims to "
-        "foster a deeper appreciation for the shared human experience, transcending time and reminding us "
-        "of the universality of emotions and aspirations."
-    )
-
-    # load predict churn files
     version = 'v6'
     pipeline_dc_fe = load_pkl_file(
         f"outputs/ml_pipeline/predict-survivor/{version}/pipeline_dc_fe.pkl")
