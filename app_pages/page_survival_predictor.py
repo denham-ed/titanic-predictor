@@ -57,7 +57,7 @@ def DrawInputsWidgets():
     col1, col2 = st.beta_columns(2)
     col3, col4 = st.beta_columns(2)
 
-    with col1:
+    with col2:
         feature = "Sex"
         st_widget = st.selectbox(
             label=feature,
@@ -76,7 +76,7 @@ def DrawInputsWidgets():
         )
         X_live[feature] = st_widget
 
-    with col4:
+    with col1:
         feature = "Pclass"
         st_widget = st.selectbox(
             on_change=change(df, st_widget),
@@ -86,8 +86,7 @@ def DrawInputsWidgets():
         st.session_state['filtered_df'] = df[df["Pclass"] == st_widget]
         X_live[feature] = st_widget
 
-    # NB: Needs to be last as streamlit runs top down.
-    with col2:
+    with col4:
         feature = "Fare"
         st_widget = st.slider(
             label=feature,
@@ -101,10 +100,9 @@ def DrawInputsWidgets():
             f"* Most Second Class tickets cost between £13 and £26, with a median of £14\n\n"
             f"* Most First Class tickets were cost between £30 and £94, with a median of £60\n\n"
         )
-        X_live[feature] = st_widget
+        X_live[feature] = st_widget  
 
     return X_live
-
 
 def change(df, st_widget):
     st.session_state['filtered_df'] = df[df["Pclass"] == st_widget]
